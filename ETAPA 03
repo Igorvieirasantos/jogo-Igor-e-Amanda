@@ -1,0 +1,46 @@
+/* 
+
+ Equipe: 
+ Igor Vieira dos Santos - Subturma D (Líder)
+ Amanda Beatris Pinheiro de Sousa - Subturma C
+ Etapa 03
+ 
+ */
+function setup() {
+  createCanvas(400, 400);
+  frameRate(30);
+}
+
+var x = 45;
+var y = 170;
+var xo = 0;
+var yo = 50;
+
+function draw() {
+
+  background(220);
+  rect(xo, yo, 50, 50);
+  xo = xo + 5;
+  if (xo > 500) {
+    xo = -random(1000);
+    console.log(xo)
+  }  
+  ellipse(x, y, 60, 60);
+  
+  if (keyIsDown(DOWN_ARROW))
+  {
+    y = y + 5;
+  }
+  if (keyIsDown(UP_ARROW))
+  {
+    y = y - 5;
+  }
+  if (keyIsDown(RIGHT_ARROW))
+  {
+    x = x + 5;
+  }
+  if (keyIsDown(LEFT_ARROW))
+  {
+    x = x - 5;
+  }
+}  
