@@ -1,0 +1,80 @@
+/* 
+
+ Equipe: 
+ Igor Vieira dos Santos - Subturma D (Líder)
+ Amanda Beatris Pinheiro de Sousa - Subturma C
+ Etapa 05
+ 
+ */
+var pulo = false;
+var yp = 0;
+var xdo, ydo;
+var contFrames = 0;
+var vidas = 3;
+var pontos = 0;
+var nivel = 1;
+ 
+function setup() {
+  createCanvas(400, 400);
+  xdo = 50;
+  ydo = 360;
+  frameRate(30);
+}
+
+var x = 45;
+var y = 170;
+var xo = 0;
+var yo = 50;
+
+function draw() {
+ 
+  if (keyIsDown(RIGHT_ARROW)) {
+    xdo = xdo + 5; 
+		if ( xdo > width )
+			xdo = 0; 
+  }  
+  background(220);
+
+  xo = xo + 6;
+  if (xo > 500) {
+    xo = -random(1000);
+    console.log(xo)
+  }  
+  if (keyIsDown(UP_ARROW) && (! pulo) ){ 
+		pulo = true; 
+		contFrames = 0; 
+	}
+  if (pulo) {
+	contFrames++; 
+    yp = 0.5*(contFrames)*(contFrames - 30);
+    if (yp > 0) {
+    pulo = false;
+			yp = 0; 		
+	}
+  }
+  background(220); 
+  fill(0, 102, 153);
+  textSize(18);
+  text('Vidas: '+vidas, 20, 30);
+  text('Pontos: '+pontos, 160, 30);
+  text('Nível: '+nivel, 310, 30);
+  ellipse(xdo, ydo+yp, 60, 60);
+  rect(xo, yo, 50, 50);
+  if (keyIsDown(DOWN_ARROW))
+  {
+    y = y + 5;
+  }
+  if (keyIsDown(UP_ARROW))
+  {
+    y = y - 5;
+  }
+  if (keyIsDown(RIGHT_ARROW))
+  {
+    x = x + 5;
+  }
+  if (keyIsDown(LEFT_ARROW))
+  {
+    x = x - 5;
+  }
+  
+}  
