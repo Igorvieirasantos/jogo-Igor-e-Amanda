@@ -15,7 +15,7 @@ var pontos = 0;
 var nivel = 1;
  
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(650, 400);
   xdo = 50;
   ydo = 360;
   frameRate(30);
@@ -55,9 +55,9 @@ function draw() {
   background(220); 
   fill(0, 102, 153);
   textSize(18);
-  text('Vidas: '+vidas, 20, 30);
-  text('Pontos: '+pontos, 160, 30);
-  text('Nível: '+nivel, 310, 30);
+  text('Vidas: '+vidas, 40, 30);
+  text('Pontos: '+pontos, 280, 30);
+  text('Nível: '+nivel, 520, 30);
   ellipse(x, ydo+yp, 60, 60);
   rect(xo, yo, 50, 50);
   if (keyIsDown(DOWN_ARROW))
