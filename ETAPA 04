@@ -48,7 +48,7 @@ function draw() {
 	}
   }
   background(220); 
-  ellipse(xdo, ydo+yp, 60, 60);
+  ellipse(x, ydo+yp, 60, 60);
   rect(xo, yo, 50, 50);
   if (keyIsDown(DOWN_ARROW))
   {
