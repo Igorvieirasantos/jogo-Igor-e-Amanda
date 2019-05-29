@@ -56,6 +56,10 @@ function draw() {
   if (dist(x, ydo+yp, xo, yo) < raioP + raioO) {
     x = 50;
     y = 400;
+    vidas--;
+  }
+  if (vidas <=0){
+    vidas = 0;
   }
   if (keyIsDown(DOWN_ARROW))
   {
