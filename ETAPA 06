@@ -66,6 +66,7 @@ function draw() {
     x = 50;
     y = 400;
     vidas--;
+    xo = 600 +random(500);
   }
   if (vidas <=0){
     vidas = 0;
