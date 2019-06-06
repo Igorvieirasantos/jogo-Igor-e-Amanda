@@ -19,9 +19,10 @@ var raioO = 30;
 var x = 45;
 var y = 170;
 var xo = 500;
+var xo2 = 500;
 var yo = 340;
 var Vxo = [];
-var Vyo = [];
+
 var qntobj = 3;
 function setup() {
   createCanvas(650, 400);
@@ -29,6 +30,7 @@ function setup() {
   ydo = 360;
   frameRate(30);
 }
+
 function draw() {
  
   if (keyIsDown(RIGHT_ARROW)) {
@@ -37,7 +39,8 @@ function draw() {
 			xdo = 0; 
   }  
   background(220);
-
+  Vxo[0] = 500; Vxo[1] = 700; Vxo[2] = 800;
+  
   xo = xo - 6;
   if (xo < -20) {
     xo = 600 +random(500);
@@ -62,18 +65,18 @@ function draw() {
   text('Pontos: '+pontos, 280, 30);
   text('Nível: '+nivel, 520, 30);
   ellipse(x, ydo+yp, 60, 60);
-  rect(xo, yo, 2*raioP, 2*raioP);
-  for(var i = 0; i < qntobj; i++) { 
-  Vxo[i] = random (0, 500);
-  Vyo[i] = random(0, 500);
+  for( i = 0; i < 2; i++)
+  {
+     rect(Vxo[i], yo, 2*raioP, 2*raioP);
+    Vxo[i] -= 3;
   }
-  rect(Vxo[i], Vyo[i], 2*raioP, 2*raioP);
   if (dist(x, ydo+yp, xo, yo) < raioP + raioO) {
     x = 50;
     y = 400;
     vidas--;
     xo = 600 +random(500);
   }
+  // Comando de movimentação
   if (vidas <=0){
     vidas = 0;
   }
