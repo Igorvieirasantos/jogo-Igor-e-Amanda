@@ -2,7 +2,7 @@
 
  Equipe: 
  Igor Vieira dos Santos - Subturma D (Líder)
- Amanda Beatris Pinheiro de Sousa - Subturma C
+ Amanda Beatriz Pinheiro de Sousa - Subturma C
  Etapa 06
  
  */
@@ -60,7 +60,7 @@ function draw() {
   text('Nível: '+nivel, 520, 30);
   ellipse(x, ydo+yp, 60, 60);
   rect(xo, yo, 2*raioP, 2*raioP);
-  if (ydo+yp < 360) {
+  if (ydo+yp < 330) {
     pontos = pontos + 1;
   } 
   if (dist(x, ydo+yp, xo, yo) < raioP + raioO) {
