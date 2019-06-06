@@ -3,7 +3,7 @@
  Equipe: 
  Igor Vieira dos Santos - Subturma D (Líder)
  Amanda Beatriz Pinheiro de Sousa - Subturma C
- Etapa 06
+ Etapa 07
  
  */
  
@@ -18,17 +18,17 @@ var raioP = 25;
 var raioO = 30;
 var x = 45;
 var y = 170;
-var xo = 500;
-var xo2 = 500;
 var yo = 340;
 var Vxo = [];
-
 var qntobj = 3;
 function setup() {
   createCanvas(650, 400);
   xdo = 50;
   ydo = 360;
   frameRate(30);
+  Vxo[0] = 400; 
+  Vxo[1] = 750; 
+  Vxo[2] = 800;
 }
 
 function draw() {
@@ -39,11 +39,8 @@ function draw() {
 			xdo = 0; 
   }  
   background(220);
-  Vxo[0] = 500; Vxo[1] = 700; Vxo[2] = 800;
-  
-  xo = xo - 6;
-  if (xo < -20) {
-    xo = 600 +random(500);
+  if (Vxo < -20) {
+    Vxo= 600 +random(500);
     console.log(xo)
   }  
   if (keyIsDown(UP_ARROW) && (! pulo) ){ 
@@ -67,14 +64,14 @@ function draw() {
   ellipse(x, ydo+yp, 60, 60);
   for( i = 0; i < 2; i++)
   {
-     rect(Vxo[i], yo, 2*raioP, 2*raioP);
-    Vxo[i] -= 3;
+    rect(Vxo[i], yo, 2*raioP, 2*raioP);
+    Vxo[i] -= 6;
   }
-  if (dist(x, ydo+yp, xo, yo) < raioP + raioO) {
+  if (dist(x, ydo+yp, Vxo, yo) < raioP + raioO) {
     x = 50;
     y = 400;
     vidas--;
-    xo = 600 +random(500);
+    Vxo = 600 +random(500);
   }
   // Comando de movimentação
   if (vidas <=0){
