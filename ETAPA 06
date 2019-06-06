@@ -60,7 +60,9 @@ function draw() {
   text('Nível: '+nivel, 520, 30);
   ellipse(x, ydo+yp, 60, 60);
   rect(xo, yo, 2*raioP, 2*raioP);
-  
+  if (ydo+yp < 360) {
+    pontos = pontos + 1;
+  } 
   if (dist(x, ydo+yp, xo, yo) < raioP + raioO) {
     x = 50;
     y = 400;
