@@ -66,12 +66,17 @@ function draw() {
   {
     rect(Vxo[i], yo, 2*raioP, 2*raioP);
     Vxo[i] -= 6;
-  }
-  if (dist(x, ydo+yp, Vxo, yo) < raioP + raioO) {
-    x = 50;
-    y = 400;
-    vidas--;
-    Vxo = 600 +random(500);
+    if (Vxo[i] < 0) {
+    Vxo[i] = 500+random(0,200);
+    pontos = pontos + 10;  
+    }
+  
+    if (dist(x, ydo+yp, Vxo[i], yo) < raioP + raioO) {
+      x = 50;
+      y = 400;
+      vidas--;
+      Vxo[i] = 600 +random(500);
+    }
   }
   // Comando de movimentação
   if (vidas <=0){
@@ -95,3 +100,4 @@ function draw() {
   }
   
 }
+
