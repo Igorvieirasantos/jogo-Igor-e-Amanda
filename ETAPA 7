@@ -1,0 +1,97 @@
+/* 
+
+ Equipe: 
+ Igor Vieira dos Santos - Subturma D (Líder)
+ Amanda Beatriz Pinheiro de Sousa - Subturma C
+ Etapa 06
+ 
+ */
+ 
+var pulo = false;
+var yp = 0;
+var xdo, ydo;
+var contFrames = 0;
+var vidas = 3;
+var pontos = 0;
+var nivel = 1;
+var raioP = 25;
+var raioO = 30;
+var x = 45;
+var y = 170;
+var xo = 500;
+var yo = 340;
+var Vxo = [];
+var Vyo = [];
+var qntobj = 3;
+function setup() {
+  createCanvas(650, 400);
+  xdo = 50;
+  ydo = 360;
+  frameRate(30);
+}
+function draw() {
+ 
+  if (keyIsDown(RIGHT_ARROW)) {
+    xdo = xdo + 5; 
+		if ( xdo > width )
+			xdo = 0; 
+  }  
+  background(220);
+
+  xo = xo - 6;
+  if (xo < -20) {
+    xo = 600 +random(500);
+    console.log(xo)
+  }  
+  if (keyIsDown(UP_ARROW) && (! pulo) ){ 
+		pulo = true; 
+		contFrames = 0; 
+	}
+  if (pulo) {
+	contFrames++; 
+    yp = 0.5*(contFrames)*(contFrames - 30);
+    if (yp > 0) {
+    pulo = false;
+			yp = 0; 
+	}
+  }
+  background(220); 
+  fill(0, 102, 153);
+  textSize(18);
+  text('Vidas: '+vidas, 40, 30);
+  text('Pontos: '+pontos, 280, 30);
+  text('Nível: '+nivel, 520, 30);
+  ellipse(x, ydo+yp, 60, 60);
+  rect(xo, yo, 2*raioP, 2*raioP);
+  for(var i = 0; i < qntobj; i++) { 
+  Vxo[i] = random (0, 500);
+  Vyo[i] = random(0, 500);
+  }
+  rect(Vxo[i], Vyo[i], 2*raioP, 2*raioP);
+  if (dist(x, ydo+yp, xo, yo) < raioP + raioO) {
+    x = 50;
+    y = 400;
+    vidas--;
+    xo = 600 +random(500);
+  }
+  if (vidas <=0){
+    vidas = 0;
+  }
+  if (keyIsDown(DOWN_ARROW))
+  {
+    y = y + 5;
+  }
+  if (keyIsDown(UP_ARROW))
+  {
+    y = y - 5;
+  }
+  if (keyIsDown(RIGHT_ARROW))
+  {
+    x = x + 5;
+  }
+  if (keyIsDown(LEFT_ARROW))
+  {
+    x = x - 5;
+  }
+  
+}
