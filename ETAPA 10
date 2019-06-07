@@ -37,9 +37,9 @@ function setup() {
   Vxo[0] = 400; 
   Vxo[1] = 750; 
   Vxo[2] = 800;
+  mySound.play();
 }
 function draw() {
-  mySound.play();
   rectMode(CENTER);
   if(tela==0) {
   background(255)
