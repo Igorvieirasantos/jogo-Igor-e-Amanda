@@ -3,13 +3,13 @@
  Equipe: 
  Igor Vieira dos Santos - Subturma D (Líder)
  Amanda Beatriz Pinheiro de Sousa - Subturma C
- Etapa 07
+ Etapa 08
  
  */
  
 var pulo = false;
 var yp = 0;
-var xdo, ydo;
+var xdo, ydo, yElli;
 var contFrames = 0;
 var vidas = 3;
 var pontos = 0;
@@ -53,28 +53,49 @@ function draw() {
 			yp = 0; 
 	}
   }
+  yElli = ydo+yp;
   background(220); 
   fill(0, 102, 153);
   textSize(18);
   text('Vidas: '+vidas, 40, 30);
   text('Pontos: '+pontos, 280, 30);
   text('Nível: '+nivel, 520, 30);
-  ellipse(x, ydo+yp, 60, 60);
   for( i = 0; i < 2; i++)
   {
     rect(Vxo[i], yo, 2*raioP, 2*raioP);
-    Vxo[i] -= 6;
+    Vxo[i] -= 5;
+    
     if (Vxo[i] < 0) {
     Vxo[i] = 800+random(0,300);
-    pontos = pontos + 100;
-    }
-    if (pontos >= 300) {
-    nivel = 2;
-    }  
-    if (pontos >= 800) {
-      nivel = 3;
-      Vxo[i] -= 6.1;
-    }  
+    pontos = pontos + 20;
+      
+       if (pontos > 200) {
+        nivel = 2;
+        pontos = pontos + 20;
+        //pulo mais alto
+       }
+      
+       if (pontos > 600) {
+        nivel = 3;
+        pontos = pontos + 10;
+        //3 inimigos
+      }
+      
+      if (pontos > 1300) {
+        nivel = 4;
+        pontos = pontos + 10;
+        //maior velocidade
+        //pulo mais alto
+      }
+      
+      if (pontos > 3000) {
+        nivel = 5;
+        pontos = pontos + 10;
+        //maior velocidade
+      }  
+    }     
+      // ganha ao chegar a 5000 pontos
+    ellipse(x, yElli, 60, 60);
     if (dist(x, ydo+yp, Vxo[i], yo) < raioP + raioO) {
       x = 50;
       y = 400;
@@ -82,7 +103,6 @@ function draw() {
       Vxo[i] = 600 +random(500);
     }
   }
-  // Comando de movimentação
   if (vidas <=0){
     vidas = 0;
   }
@@ -102,4 +122,4 @@ function draw() {
   {
     x = x - 5;
   }
-  }  
+  }
