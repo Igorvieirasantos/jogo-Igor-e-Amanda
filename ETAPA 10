@@ -24,20 +24,22 @@ var qntobj = 2;
 var aPulo = 0.5;
 var vin = 4.5;
 var tela = 0;
+var contTexto = 0;
+var textoX = 160;
 function preload() {
-mySound = loadSound("musica.mp3.mp3");
+//mySound = loadSound("musica.mp3.mp3");
 }
 
 function setup() {
   createCanvas(650, 400);
-  mySound.setVolume(2.0);
+  //mySound.setVolume(2.0);
   xdo = 50;
   ydo = 360;
   frameRate(30);
   Vxo[0] = 400; 
   Vxo[1] = 750; 
   Vxo[2] = 800;
-  mySound.play();
+  //mySound.play();
 }
 function draw() {
   rectMode(CENTER);
@@ -45,7 +47,15 @@ function draw() {
   background(255)
   textFont('VT323');
   textSize(30);
-  text('Aperte ENTER para começar', 200,150);
+  text('KING OF THE JUMP', 200,170);
+  contTexto++;
+  if (contTexto%2 == 0) {
+    textoX = 160;
+  }
+  if (contTexto%2 == 1) {
+    textoX = 1000;
+  }  
+  text('Aperte ENTER para começar',textoX ,240);
   if (keyIsDown(RETURN))
   {
     tela = 1;
@@ -159,6 +169,6 @@ function draw() {
   }
   if (tela == 3) {
     background(0);
-    text('PARABÉNS!! VOCÊ GANHOU O JOGO!', 150, 150);
+    text('PARABÉNS!! VOCÊ VENCEU!', 200, 150);
   }
   }
