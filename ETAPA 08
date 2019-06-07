@@ -20,7 +20,9 @@ var x = 45;
 var y = 170;
 var yo = 350;
 var Vxo = [];
-var qntobj = 3;
+var qntobj = 2;
+var aPulo = 0.5;
+var vin = 4.5;
 function setup() {
   createCanvas(650, 400);
   xdo = 50;
@@ -47,7 +49,7 @@ function draw() {
 	}
   if (pulo) {
 	contFrames++; 
-    yp = 0.5*(contFrames)*(contFrames - 30);
+    yp = aPulo*(contFrames)*(contFrames - 30);
     if (yp > 0) {
     pulo = false;
 			yp = 0; 
@@ -60,10 +62,10 @@ function draw() {
   text('Vidas: '+vidas, 40, 30);
   text('Pontos: '+pontos, 280, 30);
   text('Nível: '+nivel, 520, 30);
-  for( i = 0; i < 2; i++)
+  for( i = 0; i < qntobj; i++)
   {
     rect(Vxo[i], yo, 2*raioP, 2*raioP);
-    Vxo[i] -= 5;
+    Vxo[i] -= vin;
     
     if (Vxo[i] < 0) {
     Vxo[i] = 800+random(0,300);
@@ -71,27 +73,27 @@ function draw() {
       
        if (pontos > 200) {
         nivel = 2;
-        pontos = pontos + 20;
-        //pulo mais alto
+        pontos = pontos + 21;
+        aPulo = 0.65;
        }
       
        if (pontos > 600) {
         nivel = 3;
-        pontos = pontos + 10;
-        //3 inimigos
+        pontos = pontos + 17;
+        qntobj++;
       }
       
       if (pontos > 1300) {
         nivel = 4;
         pontos = pontos + 10;
-        //maior velocidade
-        //pulo mais alto
+        vin = 5.5;
+        aPulo = 0.9;
       }
       
       if (pontos > 3000) {
         nivel = 5;
         pontos = pontos + 10;
-        //maior velocidade
+        vin = 8;
       }  
     }     
       // ganha ao chegar a 5000 pontos
