@@ -25,7 +25,7 @@ var aPulo = 0.5;
 var vin = 4.5;
 var tela = 0;
 function preload() {
- mySound = loadSound("4- Cartoon on on feat daniel levi ncs release.mp3");
+mySound = loadSound("musica.mp3.mp3");
 }
 
 function setup() {
@@ -43,6 +43,8 @@ function draw() {
   rectMode(CENTER);
   if(tela==0) {
   background(255)
+  textFont('VT323');
+  textSize(30);
   text('Aperte ENTER para começar', 200,150);
   if (keyIsDown(RETURN))
   {
