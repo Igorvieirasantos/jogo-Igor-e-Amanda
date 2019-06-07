@@ -1,0 +1,156 @@
+/* 
+
+ Equipe: 
+ Igor Vieira dos Santos - Subturma D (Líder)
+ Amanda Beatriz Pinheiro de Sousa - Subturma C
+ Etapa 09
+ 
+ */
+ 
+var pulo = false;
+var yp = 0;
+var xdo, ydo, yElli;
+var contFrames = 0;
+var vidas = 3;
+var pontos = 0;
+var nivel = 1;
+var raioP = 18;
+var raioO = 40;
+var x = 45;
+var y = 170;
+var yo = 375;
+var Vxo = [];
+var qntobj = 2;
+var aPulo = 0.5;
+var vin = 4.5;
+var tela = 0;
+function setup() {
+  createCanvas(650, 400);
+  xdo = 50;
+  ydo = 360;
+  frameRate(30);
+  Vxo[0] = 400; 
+  Vxo[1] = 750; 
+  Vxo[2] = 800;
+}
+function draw() {
+  rectMode(CENTER);
+  if(tela==0) {
+  background(255)
+  text('Aperte ENTER para começar', 200,150);
+  if (keyIsDown(RETURN))
+  {
+    tela = 1;
+  }
+  }
+  if(tela==1){
+  if (keyIsDown(RIGHT_ARROW)) {
+    xdo = xdo + 5; 
+		if ( xdo > width )
+			xdo = 0; 
+  }  
+  background(220);
+  if (Vxo < -20) {
+    Vxo= 600 +random(500);
+    console.log(xo)
+  }  
+  if (keyIsDown(UP_ARROW) && (! pulo) ){ 
+		pulo = true; 
+		contFrames = 0; 
+	}
+  if (pulo) {
+	contFrames++; 
+    yp = aPulo*(contFrames)*(contFrames - 30);
+    if (yp > 0) {
+    pulo = false;
+			yp = 0; 
+	}
+  }
+  yElli = ydo+yp; 
+  for( i = 0; i < qntobj; i++)
+  {
+    rect(Vxo[i], yo, 2*raioP, 2*raioP);
+    Vxo[i] -= vin;
+    
+    if (Vxo[i] < 0) {
+    Vxo[i] = 800+random(0,300);
+    pontos = pontos + 20;
+      
+       if (pontos >= 200) {
+        nivel = 2;
+        pontos = pontos + 21;
+        aPulo = 0.65;
+       }
+      
+       if (pontos >= 600) {
+        nivel = 3;
+        pontos = pontos + 17;
+        qntobj++;
+      }
+      
+      if (pontos >= 1300) {
+        nivel = 4;
+        pontos = pontos + 10;
+        vin = 5.5;
+        aPulo = 0.9;
+      }
+      
+      if (pontos >= 3000) {
+        nivel = 5;
+        pontos = pontos + 10;
+        vin = 8;
+      }  
+    }     
+      if (pontos >= 5000) {
+       tela = 3; 
+      }
+    ellipse(x, yElli, 60, 60);
+    if (dist(x, ydo+yp, Vxo[i], yo) < raioP + raioO) {
+      x = 50;
+      y = 400;
+      vidas--;
+      Vxo[i] = 600 +random(500);
+    }
+  }
+  fill(0, 102, 153);
+  textSize(18);
+  text('Vidas: '+vidas, 40, 30);
+  text('Pontos: '+pontos, 280, 30);
+  text('Nível: '+nivel, 520, 30);
+  if (vidas <=0){
+    vidas = 0;
+    tela = 2;
+    }
+  if (keyIsDown(DOWN_ARROW))
+  {
+    y = y + 5;
+  }
+  if (keyIsDown(UP_ARROW))
+  {
+    y = y - 5;
+  }
+  if (keyIsDown(RIGHT_ARROW))
+  {
+    x = x + 5;
+  }
+  if (keyIsDown(LEFT_ARROW))
+  {
+    x = x - 5;
+  }
+  }
+  if(tela == 2) {
+    text('GAME OVER! Aperte CTRL para recomeçar', 140,150);
+    if (keyIsDown(CONTROL))
+    {
+    tela = 0;
+    vidas =3;
+    nivel = 1;
+    pontos = 0;
+    qntobj = 2;
+    }
+  }
+  if (tela == 3) {
+    background(0);
+    text('PARABÉNS!! VOCÊ GANHOU O JOGO!', 150, 150);
+  }
+  }
