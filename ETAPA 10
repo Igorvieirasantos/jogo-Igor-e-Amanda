@@ -31,23 +31,23 @@ var cacto =[];
 var animacacto;
 var animasamurai;
 function preload() {
-//mySound = loadSound("musica.mp3.mp3");
+mySound = loadSound("musica1.mp3");
 for ( var j = 0 ; j < 1; j ++) {
- samurai[j] = loadImage(' pirata_'+j+'.png');
+ samurai[j] = loadImage('rum_pirata'+j+'.png');
 } 
 }
 
 
 function setup() {
   createCanvas(650, 400);
-  //mySound.setVolume(2.0);
+  mySound.setVolume(0.5);
   xdo = 50;
   ydo = 360;
   frameRate(30);
   Vxo[0] = 400; 
   Vxo[1] = 750; 
   Vxo[2] = 800;
-  //mySound.play();
+  mySound.play();
 }
 function draw() {
   rectMode(CENTER);
