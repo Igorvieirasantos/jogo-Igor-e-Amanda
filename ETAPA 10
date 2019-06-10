@@ -11,7 +11,7 @@ var pulo = false;
 var yp = 0;
 var xdo, ydo, yElli;
 var contFrames = 0;
-var vidas = 3;
+var vidas = 5;
 var pontos = 0;
 var nivel = 1;
 var raioP = 18;
@@ -21,14 +21,22 @@ var y = 170;
 var yo = 375;
 var Vxo = [];
 var qntobj = 2;
-var aPulo = 0.5;
+var aPulo = 0.7;
 var vin = 4.5;
 var tela = 0;
 var contTexto = 0;
 var textoX = 160;
+var samurai = [];
+var cacto =[];
+var animacacto;
+var animasamurai;
 function preload() {
 //mySound = loadSound("musica.mp3.mp3");
+for ( var j = 0 ; j < 1; j ++) {
+ samurai[j] = loadImage(' pirata_'+j+'.png');
+} 
 }
+
 
 function setup() {
   createCanvas(650, 400);
@@ -67,7 +75,7 @@ function draw() {
 		if ( xdo > width )
 			xdo = 0; 
   }  
-  background(220);
+  background(255);
   if (Vxo < -20) {
     Vxo= 600 +random(500);
     console.log(xo)
@@ -94,35 +102,35 @@ function draw() {
     Vxo[i] = 800+random(0,300);
     pontos = pontos + 20;
       
-       if (pontos >= 200) {
+       if (pontos >= 100) {
         nivel = 2;
         pontos = pontos + 21;
-        aPulo = 0.65;
+        aPulo = 0.8;
        }
       
-       if (pontos >= 600) {
+       if (pontos >= 150) {
         nivel = 3;
         pontos = pontos + 17;
         qntobj++;
       }
       
-      if (pontos >= 1300) {
+      if (pontos >= 200) {
         nivel = 4;
         pontos = pontos + 10;
         vin = 5.5;
         aPulo = 0.9;
       }
       
-      if (pontos >= 3000) {
+      if (pontos >= 300) {
         nivel = 5;
         pontos = pontos + 10;
         vin = 8;
       }  
     }     
-      if (pontos >= 5000) {
+      if (pontos >= 380) {
        tela = 3; 
       }
-    ellipse(x, yElli, 60, 60);
+   
     if (dist(x, ydo+yp, Vxo[i], yo) < raioP + raioO) {
       x = 50;
       y = 400;
@@ -139,6 +147,7 @@ function draw() {
     vidas = 0;
     tela = 2;
     }
+    image(samurai[0],  x, yElli-60);
   if (keyIsDown(DOWN_ARROW))
   {
     y = y + 5;
@@ -161,7 +170,7 @@ function draw() {
     if (keyIsDown(CONTROL))
     {
     tela = 0;
-    vidas =3;
+    vidas = 5;
     nivel = 1;
     pontos = 0;
     qntobj = 2;
@@ -171,4 +180,4 @@ function draw() {
     background(0);
     text('PARABÉNS!! VOCÊ VENCEU!', 200, 150);
   }
-  }
+}
